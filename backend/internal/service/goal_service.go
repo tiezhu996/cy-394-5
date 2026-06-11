@@ -5,6 +5,10 @@ import (
 	"fitnessapi/internal/repository"
 )
 
+type GoalServiceAPI interface {
+	Save(goal *model.Goal) error
+}
+
 type GoalService struct{ repo repository.GoalRepository }
 
 func NewGoalService(repo repository.GoalRepository) GoalService { return GoalService{repo: repo} }

@@ -11,12 +11,12 @@ import (
 )
 
 type GoalHandler struct {
-	goalSvc   service.GoalService
-	recordSvc service.RecordService
+	goalSvc   service.GoalServiceAPI
+	recordSvc service.RecordServiceAPI
 	goalRepo  repository.GoalRepository
 }
 
-func NewGoalHandler(goalSvc service.GoalService, recordSvc service.RecordService, goalRepo repository.GoalRepository) GoalHandler {
+func NewGoalHandler(goalSvc service.GoalServiceAPI, recordSvc service.RecordServiceAPI, goalRepo repository.GoalRepository) GoalHandler {
 	return GoalHandler{goalSvc: goalSvc, recordSvc: recordSvc, goalRepo: goalRepo}
 }
 func (h GoalHandler) Save(c *gin.Context) {

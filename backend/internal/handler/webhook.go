@@ -8,9 +8,9 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type WebhookHandler struct{ recordSvc service.RecordService }
+type WebhookHandler struct{ recordSvc service.RecordServiceAPI }
 
-func NewWebhookHandler(recordSvc service.RecordService) WebhookHandler {
+func NewWebhookHandler(recordSvc service.RecordServiceAPI) WebhookHandler {
 	return WebhookHandler{recordSvc: recordSvc}
 }
 func (h WebhookHandler) Device(c *gin.Context) {

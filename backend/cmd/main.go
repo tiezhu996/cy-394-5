@@ -17,8 +17,11 @@ func main() {
 	cfg := config.Load()
 	logger := utils.NewLogger()
 	db := config.MustOpenDB(cfg)
-	if err := db.AutoMigrate(&model.User{}, &model.WorkoutRecord{}, &model.Goal{}); err != nil {
+	if err := db.AutoMigrate(&model.User{}, &model.WorkoutRecord{}, &model.Goal{}, &model.Friendship{}); err != nil {
 		logger.Fatal("migrate failed", utils.ZapError(err))
+	}
+	if err := config.EnsureSchema(db); err != nil {
+		logger.Fatal("schema ensure failed", utils.ZapError(err))
 	}
 	app := router.New(db, logger, cfg)
 	logger.Info("server started", utils.ZapString("port", cfg.ServerPort))

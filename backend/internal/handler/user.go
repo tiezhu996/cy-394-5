@@ -23,9 +23,9 @@ func Login(cfg config.Config) gin.HandlerFunc {
 	}
 }
 
-type UserHandler struct{ userSvc service.UserService }
+type UserHandler struct{ userSvc service.UserServiceAPI }
 
-func NewUserHandler(userSvc service.UserService) UserHandler {
+func NewUserHandler(userSvc service.UserServiceAPI) UserHandler {
 	return UserHandler{userSvc: userSvc}
 }
 

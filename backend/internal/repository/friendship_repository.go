@@ -6,6 +6,13 @@ import (
 	"gorm.io/gorm"
 )
 
+type FriendshipRepo interface {
+	Create(friendship *model.Friendship) error
+	ListFriendIDs(userID uint) ([]uint, error)
+	Exists(userID, friendID uint) (bool, error)
+	ListFriends(userID uint) ([]model.FriendInfo, error)
+}
+
 type FriendshipRepository struct{ db *gorm.DB }
 
 func NewFriendshipRepository(db *gorm.DB) FriendshipRepository {

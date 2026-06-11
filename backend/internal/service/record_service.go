@@ -7,6 +7,15 @@ import (
 	"time"
 )
 
+type RecordServiceAPI interface {
+	Create(record *model.WorkoutRecord) error
+	List(userID uint, start, end *time.Time) ([]model.WorkoutRecord, error)
+	ListByUserIDs(userIDs []uint, start, end *time.Time) ([]model.WorkoutRecord, error)
+	Update(record *model.WorkoutRecord) error
+	Delete(id uint) error
+	Find(id uint) (model.WorkoutRecord, error)
+}
+
 type RecordService struct{ repo repository.RecordRepository }
 
 func NewRecordService(repo repository.RecordRepository) RecordService {

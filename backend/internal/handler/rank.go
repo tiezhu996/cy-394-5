@@ -11,11 +11,11 @@ import (
 )
 
 type RankHandler struct {
-	recordSvc service.RecordService
-	userSvc   service.UserService
+	recordSvc service.RecordServiceAPI
+	userSvc   service.UserServiceAPI
 }
 
-func NewRankHandler(recordSvc service.RecordService, userSvc service.UserService) RankHandler {
+func NewRankHandler(recordSvc service.RecordServiceAPI, userSvc service.UserServiceAPI) RankHandler {
 	return RankHandler{recordSvc: recordSvc, userSvc: userSvc}
 }
 

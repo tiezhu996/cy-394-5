@@ -8,12 +8,19 @@ import (
 	"gorm.io/gorm"
 )
 
-type UserService struct {
-	userRepo       repository.UserRepository
-	friendshipRepo repository.FriendshipRepository
+type UserServiceAPI interface {
+	GetUser(id uint) (model.User, error)
+	AddFriendByKey(userID uint, friendKey string) (model.FriendInfo, error)
+	ListFriends(userID uint) ([]model.FriendInfo, error)
+	GetFriendIDs(userID uint) ([]uint, error)
 }
 
-func NewUserService(userRepo repository.UserRepository, friendshipRepo repository.FriendshipRepository) UserService {
+type UserService struct {
+	userRepo       repository.UserRepo
+	friendshipRepo repository.FriendshipRepo
+}
+
+func NewUserService(userRepo repository.UserRepo, friendshipRepo repository.FriendshipRepo) UserService {
 	return UserService{userRepo: userRepo, friendshipRepo: friendshipRepo}
 }
 

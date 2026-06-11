@@ -6,6 +6,12 @@ import (
 	"gorm.io/gorm"
 )
 
+type UserRepo interface {
+	FindByID(id uint) (model.User, error)
+	FindByFriendKey(friendKey string) (model.User, error)
+	ListByIDs(ids []uint) ([]model.User, error)
+}
+
 type UserRepository struct{ db *gorm.DB }
 
 func NewUserRepository(db *gorm.DB) UserRepository { return UserRepository{db: db} }

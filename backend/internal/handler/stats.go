@@ -9,9 +9,9 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type StatsHandler struct{ recordSvc service.RecordService }
+type StatsHandler struct{ recordSvc service.RecordServiceAPI }
 
-func NewStatsHandler(recordSvc service.RecordService) StatsHandler {
+func NewStatsHandler(recordSvc service.RecordServiceAPI) StatsHandler {
 	return StatsHandler{recordSvc: recordSvc}
 }
 func (h StatsHandler) Types(c *gin.Context) { c.JSON(http.StatusOK, constants.METValues) }

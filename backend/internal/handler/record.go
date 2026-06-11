@@ -10,9 +10,9 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type RecordHandler struct{ svc service.RecordService }
+type RecordHandler struct{ svc service.RecordServiceAPI }
 
-func NewRecordHandler(svc service.RecordService) RecordHandler { return RecordHandler{svc: svc} }
+func NewRecordHandler(svc service.RecordServiceAPI) RecordHandler { return RecordHandler{svc: svc} }
 func (h RecordHandler) Create(c *gin.Context) {
 	var record model.WorkoutRecord
 	if err := c.ShouldBindJSON(&record); err != nil {
