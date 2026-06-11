@@ -29,3 +29,18 @@ func (r RecordRepository) List(userID uint, start, end *time.Time) ([]model.Work
 	var records []model.WorkoutRecord
 	return records, query.Find(&records).Error
 }
+
+func (r RecordRepository) ListByUserIDs(userIDs []uint, start, end *time.Time) ([]model.WorkoutRecord, error) {
+	query := r.db.Order("occurred_at desc")
+	if len(userIDs) > 0 {
+		query = query.Where("user_id IN ?", userIDs)
+	}
+	if start != nil {
+		query = query.Where("occurred_at >= ?", *start)
+	}
+	if end != nil {
+		query = query.Where("occurred_at <= ?", *end)
+	}
+	var records []model.WorkoutRecord
+	return records, query.Find(&records).Error
+}

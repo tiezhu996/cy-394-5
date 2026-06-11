@@ -32,3 +32,17 @@ type Goal struct {
 	EffectiveMonday time.Time `json:"effective_monday"`
 	CreatedAt       time.Time `json:"created_at"`
 }
+
+type Friendship struct {
+	ID        uint      `gorm:"primaryKey" json:"id"`
+	UserID    uint      `gorm:"uniqueIndex:idx_user_friend" json:"user_id"`
+	FriendID  uint      `gorm:"uniqueIndex:idx_user_friend" json:"friend_id"`
+	CreatedAt time.Time `json:"created_at"`
+}
+
+type FriendInfo struct {
+	ID        uint      `json:"id"`
+	Name      string    `json:"name"`
+	FriendKey string    `json:"friend_key"`
+	CreatedAt time.Time `json:"created_at"`
+}
